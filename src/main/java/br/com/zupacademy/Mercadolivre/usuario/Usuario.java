@@ -1,8 +1,11 @@
 package br.com.zupacademy.Mercadolivre.usuario;
 
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.util.Assert;
+import org.springframework.util.StringUtils;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Entity
 public class Usuario {
@@ -15,14 +18,23 @@ public class Usuario {
     @Column(nullable = false)
     private String senha;
 
+    private LocalDateTime createdAt= LocalDateTime.now();
+
     @Deprecated //uso eclusivo do Hibernate
     public Usuario() {
     }
 
-    public Usuario(String email, String senha) {
+    public Usuario(String email, SenhaLimpa senhaLimpa) {
+        //tratamento
+        Assert.hasLength(email,"Email nao pode ser em branco");
+        Assert.hasLength(senha,"Senha nao pode ser em branco");
+        Assert.isTrue(senha.length()>=6,"Senha no mínimo com 6 caracteres");
+
         this.email = email;
-        this.senha = senha;
+        this.senha = senhaLimpa.hash() ;
+
         Assert.isTrue(verificaEntradas(),"Campos não podem ser nulos");
+
     }
 
     public boolean verificaEntradas(){

@@ -20,15 +20,7 @@ public class UsuarioRequest {
 
     }
 
-    public String getEmail() {
-        return email;
-    }
-
-    public String getSenha() {
-        return senha;
-    }
-
     public Usuario toUsuario(){
-        return new Usuario(this.email, this.senha);
+        return new Usuario(this.email, new SenhaLimpa(senha));
     }
 }
