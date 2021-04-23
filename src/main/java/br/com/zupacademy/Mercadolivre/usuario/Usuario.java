@@ -27,8 +27,7 @@ public class Usuario {
     public Usuario(String email, SenhaLimpa senhaLimpa) {
         //tratamento
         Assert.hasLength(email,"Email nao pode ser em branco");
-        Assert.hasLength(senha,"Senha nao pode ser em branco");
-        Assert.isTrue(senha.length()>=6,"Senha no mínimo com 6 caracteres");
+        Assert.notNull(senhaLimpa,"A senha não pode ser em branco");
 
         this.email = email;
         this.senha = senhaLimpa.hash() ;

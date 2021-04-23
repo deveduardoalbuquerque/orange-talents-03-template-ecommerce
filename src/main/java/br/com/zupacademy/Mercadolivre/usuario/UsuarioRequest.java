@@ -1,5 +1,7 @@
 package br.com.zupacademy.Mercadolivre.usuario;
 
+import br.com.zupacademy.Mercadolivre.validacao.ValidaCampoDuplicado;
+
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
@@ -7,7 +9,7 @@ import javax.validation.constraints.Size;
 public class UsuarioRequest {
 
     @NotBlank
-    @Email
+    @Email @ValidaCampoDuplicado(atributo = "email", aClass = Usuario.class)
     private String email;
     @NotBlank @Size(min = 6)
     private String senha;
