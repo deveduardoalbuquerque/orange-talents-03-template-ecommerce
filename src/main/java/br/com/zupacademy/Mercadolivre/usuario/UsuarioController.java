@@ -1,14 +1,12 @@
 package br.com.zupacademy.Mercadolivre.usuario;
 
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @RestController
-@RequestMapping("usuarios")
+@RequestMapping("/usuarios")
 public class UsuarioController {
 
     private UsuarioRepository repository;
@@ -20,5 +18,10 @@ public class UsuarioController {
     @PostMapping
     public void salvarUsuario(@RequestBody @Valid UsuarioRequest usuarioRequest){
         repository.save(usuarioRequest.toUsuario());
+    }
+
+    @GetMapping
+    public List<Usuario> listarTudo(){
+        return repository.findAll();
     }
 }

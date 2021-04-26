@@ -23,4 +23,9 @@ public class CategoriaController {
 
     }
 
+    @GetMapping
+    public List<Categoria> listarTudo(){
+        return repository.findAll();
+    }
+
 }
