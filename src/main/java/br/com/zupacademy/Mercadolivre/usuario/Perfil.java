@@ -12,8 +12,7 @@ import javax.persistence.Id;
 @Entity
 public class Perfil implements GrantedAuthority {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String perfil;
@@ -26,9 +25,13 @@ public class Perfil implements GrantedAuthority {
         this.perfil = perfil;
     }
 
-    public Long getId() { return id; }
+    public Long getId() {
+        return id;
+    }
 
-    public String getPerfil() { return perfil; }
+    public String getPerfil() {
+        return perfil;
+    }
 
     @Override
     public String getAuthority() {
