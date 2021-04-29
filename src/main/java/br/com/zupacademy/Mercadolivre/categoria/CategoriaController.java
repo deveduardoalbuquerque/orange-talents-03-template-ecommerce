@@ -1,8 +1,10 @@
 package br.com.zupacademy.Mercadolivre.categoria;
 
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.security.Security;
 import java.util.List;
 
 @RestController
@@ -17,7 +19,7 @@ public class CategoriaController {
 
     @PostMapping
     public Categoria salvarCategoria(@RequestBody @Valid CategoriaRequest categoriaRequest){
-
+        System.out.println(SecurityContextHolder.getContext().getAuthentication().getPrincipal());
         System.out.println(categoriaRequest);
         return repository.save(categoriaRequest.toCategoria());
 

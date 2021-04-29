@@ -13,6 +13,7 @@ public class Caracteristica {
     @ManyToOne
     private Produto produto;
 
+    @Deprecated //Utilizado apenas pelo Hibernate
     public Caracteristica() {
     }
 

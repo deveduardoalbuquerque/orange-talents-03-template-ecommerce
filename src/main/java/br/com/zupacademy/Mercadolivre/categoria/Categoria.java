@@ -1,6 +1,7 @@
 package br.com.zupacademy.Mercadolivre.categoria;
 
 import br.com.zupacademy.Mercadolivre.validacao.Groups;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.data.repository.cdi.Eager;
 
 import javax.persistence.*;
@@ -16,6 +17,7 @@ public class Categoria {
     private String nome;
 
     @ManyToOne
+    @JsonIgnore
     private Categoria categoriaMae;
 
     public Categoria() {
