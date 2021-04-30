@@ -3,9 +3,12 @@ package br.com.zupacademy.Mercadolivre.produto;
 import br.com.zupacademy.Mercadolivre.categoria.Categoria;
 import br.com.zupacademy.Mercadolivre.usuario.Usuario;
 import br.com.zupacademy.Mercadolivre.usuario.UsuarioRepository;
+import br.com.zupacademy.Mercadolivre.validacao.ExisteCampo;
+import br.com.zupacademy.Mercadolivre.validacao.Groups;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -16,6 +19,8 @@ import java.util.stream.Collectors;
 public class Produto {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @NotNull(groups = Groups.Produto.class)
+    @ExisteCampo(atributo = "id", aClass = Produto.class, groups = Groups.Produto.class)
     private Long id;
 
     @Column(nullable = false)

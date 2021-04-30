@@ -1,9 +1,12 @@
 package br.com.zupacademy.Mercadolivre.usuario;
 
+import br.com.zupacademy.Mercadolivre.validacao.ExisteCampo;
+import br.com.zupacademy.Mercadolivre.validacao.Groups;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 import java.util.Collection;
 
@@ -12,6 +15,8 @@ public class Usuario implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @NotNull(groups = Groups.Usuario.class)
+    @ExisteCampo(atributo = "id",aClass = Usuario.class, groups = Groups.Usuario.class)
     private Long id;
     @Column(nullable = false, unique = true)
     private String email;
