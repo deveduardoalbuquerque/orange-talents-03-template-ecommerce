@@ -95,4 +95,8 @@ public class Produto {
     public Usuario getUsuario() {
         return usuario;
     }
+
+    public List<Caracteristica> getCaracteristicas() {
+        return caracteristicas;
+    }
 }
